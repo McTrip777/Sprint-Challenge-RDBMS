@@ -7,7 +7,7 @@ module.exports = {
   remove
 }
 function get(id) {
-    let query = db('actions');
+    let query = db('action');
 
     if (id) {
       return query
@@ -21,12 +21,12 @@ function get(id) {
     });
   }
 function insert(action) {
-    return db('actions')
+    return db('action')
       .insert(action)
       .then(([id]) => this.get(id));
   }
 function remove(id) {
-    return db('actions')
+    return db('action')
       .where('id', id)
       .del();
   }

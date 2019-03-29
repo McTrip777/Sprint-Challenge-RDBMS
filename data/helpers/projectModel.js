@@ -8,7 +8,7 @@ module.exports = {
   remove
 }
 function get(id) {
-    let query = db('projects as p');
+    let query = db('project as p');
 
     if (id) {
       query.where('p.id', id).first();
@@ -28,17 +28,17 @@ function get(id) {
     });
   }
 function getProjectActions(projectId) {
-    return db('actions')
+    return db('action')
       .where('project_id', projectId)
       .then(actions => actions.map(action => mappers.actionToBody(action)));
   }
 function insert(project) {
-    return db('projects')
+    return db('project')
       .insert(project)
       .then(([id]) => this.get(id));
   }
 function remove(id) {
-    return db('projects')
+    return db('project')
       .where('id', id)
       .del();
   }

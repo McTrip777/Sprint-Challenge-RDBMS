@@ -16,4 +16,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const project = await Project.insert(req.body);
+        console.log(project);
+            res.status(201).json(project);
+    } 
+    catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message:'Error posting project'
+        });
+    }
+});
+
+
 module.exports = router;
